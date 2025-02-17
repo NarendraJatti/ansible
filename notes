@@ -14,6 +14,37 @@ Ansible Core is Written in Python: Ansible itself is developed using Python. The
 
 pip install ansible
 
+YAML
+===========
+YAML can be easily serialized and deserialized in many popular programming languages (Python, Ruby, JavaScript, etc.), making it a great option for data exchange and configuration in different ecosystems.
+For example, in Python, you can convert Python objects into YAML (serialization) and load YAML into Python objects (deserialization) easily using libraries like PyYAML.
+Hierarchical structure: YAML’s indentation-based format naturally represents nested and hierarchical structures, which are common in Kubernetes (e.g., pods containing containers, containers exposing ports).
+Multiple resources: YAML allows multiple Kubernetes objects to be defined in the same file, separated by ---. This makes it easy to manage and deploy multiple resources at once.
+
+passwordless authentication
+====================
+ssh-copy-id -f "-o IdentityFile <PATH TO PEM FILE>" ubuntu@<INSTANCE-PUBLIC-IP>
+first time provide password,ssh key for the first time.
+1)password
+2)SSH (using keys(pem files))
+ad hoc command(imperative-CLI commands)
+
+ansible inventory file
+===================
+inventory.ini>>can be in any location
+/etc/ansible/hosts>>default file location
+list of hostnames(manage nodes)
+user@ip address
+
+
+ansible ad-hoc commands
+====================
+ansible -i inventory.ini -m ping all
+ansible -i inventory.ini -m shell -a "apt install openjdk" all
+ansible -i inventory.ini -m ping user1@publicip1
+ansible -i inventory.ini -m ping db
+ansible -i inventory.ini -m shell -a "sudo ls /etc" all
+
 
 
 
