@@ -1,0 +1,21 @@
+configuration management(core funtion)>system admins
+datadog agent installtion on ec2
+yaml>easy 
+redhat ansible
+ansible>>agentless,one control node(python prequisite),many manage nodes(any distribtions-prequite-python)
+ansible>provisioning resources in cloud,CICD deployment,network automation(CISCO-network appliances)
+
+ansible vs shell scripting vs python
+inventory file>>manage nodes list 
+
+ssh protocoal,winrm protocol 
+
+Ansible Core is Written in Python: Ansible itself is developed using Python. The control node (where Ansible is installed and run) requires Python to interpret and execute the Ansible code and modules.
+
+pip install ansible
+
+
+
+
+
+
