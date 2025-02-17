@@ -47,6 +47,23 @@ ansible -i inventory.ini -m shell -a "sudo ls /etc" all
 
 
 
+playbook
+=====
+playbook list of plays,playbook is collection of plays
+playbook consitis of tasks
+playbook>>hosts,remoteuser,task(t uses modules-to perform execution)
+
+anisble-playbook -i inventory.ini my-first-playbook.yaml 
+
+
+ansible roles(modularization-similar to helm charts or terraform modules)
+==========
+role>>different sectional folders(tasks,vars,handlers,metadata etc )  of the ansibleplaybook 
+
+anisble-galaxy role init role-name
+roles >for complicated(many steps) playbooks 
+roles can be  uploaded to anisble glaxy or also roles can be donwloaed.
+ 
 
 
 
