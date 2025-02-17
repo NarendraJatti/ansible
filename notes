@@ -2,6 +2,10 @@ configuration management(core funtion)>system admins
 datadog agent installtion on ec2
 yaml>easy 
 redhat ansible
+Important>ansible is idempotent in nature>if it's already avialble(installed)-ansible will
+NOT execute(install) again(no recreatation-no alreay exists error)
+
+
 ansible>>agentless,one control node(python prequisite),many manage nodes(any distribtions-prequite-python)
 ansible>provisioning resources in cloud,CICD deployment,network automation(CISCO-network appliances)
 
@@ -63,7 +67,26 @@ role>>different sectional folders(tasks,vars,handlers,metadata etc )  of the ans
 anisble-galaxy role init role-name
 roles >for complicated(many steps) playbooks 
 roles can be  uploaded to anisble glaxy or also roles can be donwloaed.
- 
+ we can convert playbook to roles(modularization of playbook)
+
+run playbook with role referencing>>using ansible-playbook command only(only playbook yaml file has role's referencing)
+ handlers are particular taks>to be executed upon particular action and someone requests(notify) it.
 
 
+
+
+
+
+
+
+
+
+ansible galaxy>>market place for ansible roles
+=================
+ansbile-galaxy install role role-name(from galaxy)
+location>~/.ansible/roles
+we can execute roles by referencing them in our playbooks>>running as playbook
+import ansible files from github to galaxy
+ansible-galaxy import github-username role-name --token value(from galaxy)
+rolenamspace will be there for roles/users
 
