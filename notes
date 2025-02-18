@@ -1,3 +1,4 @@
+conrol node,managed nodes
 configuration management(core funtion)>system admins
 datadog agent installtion on ec2
 yaml>easy 
@@ -62,6 +63,7 @@ anisble-playbook -i inventory.ini my-first-playbook.yaml
 
 ansible roles(modularization-similar to helm charts or terraform modules)
 ==========
+ansible role is modularized playbook
 role>>different sectional folders(tasks,vars,handlers,metadata etc )  of the ansibleplaybook 
 
 anisble-galaxy role init role-name
@@ -76,11 +78,6 @@ run playbook with role referencing>>using ansible-playbook command only(only pla
 
 
 
-
-
-
-
-
 ansible galaxy>>market place for ansible roles
 =================
 ansbile-galaxy install role role-name(from galaxy)
@@ -89,4 +86,30 @@ we can execute roles by referencing them in our playbooks>>running as playbook
 import ansible files from github to galaxy
 ansible-galaxy import github-username role-name --token value(from galaxy)
 rolenamspace will be there for roles/users
+
+
+
+
+ansible collection
+==================== 
+first install aws amazon colletions
+boto3 to be installed on control node
+commands are executed on the control node itself>talking to aws apis..so inventory file
+hosts: localhost and connection: local tell Ansible to run the playbook on your local machine (control node), but the API requests (like launching EC2 instances) are sent to AWS services from the local machine.
+Your local machine, where Ansible is running, sends API requests to AWS to launch or manage resources.In essence, Ansible uses the local machine (control node) to send instructions to AWS, but the resources themselves are deployed in AWS.
+The playbook connects to AWS using the AWS credentials (configured locally) and makes API calls to AWS.
+When managing cloud resources like EC2, S3, RDS, etc., you don’t need to SSH into any remote machine because AWS provides an API that you can interact with directly from the control node. That’s why Ansible executes tasks locally on localhost.
+localhost tells Ansible that you’re running the playbook on the control node itself (not on a remote host).
+connection: local instructs Ansible not to use SSH or any other protocol to connect to a remote host. Instead, it runs the tasks locally.
+In a typical Ansible playbook, hosts would refer to target nodes (e.g., remote servers) where tasks need to be executed.
+But when you're dealing with AWS resources, there are no actual target nodes at the time of running the playbook (because you're creating them). You need to run the playbook from your control node (which is often your local machine or another EC2 instance).
+The control node will use the AWS credentials (from environment variables or a credentials file) to authenticate with AWS and make API calls to launch the necessary resources.
+Important>>you can launch resource using the roles(modularization)
+vault integration(builtin) to store access and secret keys>>ansible vault
+create password for vault and add keys to valut
+ansible-playbook inventory.ini(not requried) ec2_create.yaml --vault-password-file vault.pass
+appox 22 ways vars can be declared in ansible!!
+vars folder(main.yaml) has more precedence to defaultt(main.yaml)
+-e >>extra vars hightest precedence
+
 
