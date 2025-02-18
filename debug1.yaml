@@ -1,0 +1,7 @@
+- name: Debug each item in a loop
+  debug:
+    msg: "Processing item {{ item }}"
+  loop:
+    - apple
+    - banana
+    - orange

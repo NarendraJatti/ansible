@@ -1,0 +1,2 @@
+item in Ansible:
+item is a special variable that holds the current element when you're using a loop. It's automatically populated with the value from the list or dictionary you're looping over.

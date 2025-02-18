@@ -105,7 +105,7 @@ In a typical Ansible playbook, hosts would refer to target nodes (e.g., remote s
 But when you're dealing with AWS resources, there are no actual target nodes at the time of running the playbook (because you're creating them). You need to run the playbook from your control node (which is often your local machine or another EC2 instance).
 The control node will use the AWS credentials (from environment variables or a credentials file) to authenticate with AWS and make API calls to launch the necessary resources.
 Important>>you can launch resource using the roles(modularization)
-vault integration(builtin) to store access and secret keys>>ansible vault
+vault integration(builtin) to store access and secret keys>>ansible vault(we can also use aws configure)
 create password for vault and add keys to valut
 ansible-playbook inventory.ini(not requried) ec2_create.yaml --vault-password-file vault.pass
 appox 22 ways vars can be declared in ansible!!
@@ -143,3 +143,8 @@ max_fail_percentage: You can set a failure threshold (e.g., 30%) before Ansible 
 any_errors_fatal: If any host fails, Ansible stops the playbook immediately for all hosts.
 serial: Tasks are executed in batches. Failed hosts can be retried after the first batch completes.
 These mechanisms allow you to control how Ansible reacts to failures, ensuring that your playbooks can handle errors in the way that best fits your use case.
+
+
+policy as code
+========
+using YAML 

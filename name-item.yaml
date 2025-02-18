@@ -1,0 +1,13 @@
+---
+- name: Create multiple users with specific attributes
+  hosts: localhost
+  tasks:
+    - name: Create users with specific UIDs
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        state: present
+      loop:
+        - { name: 'alice', uid: '1001' }
+        - { name: 'bob', uid: '1002' }
+        - { name: 'carol', uid: '1003' }
