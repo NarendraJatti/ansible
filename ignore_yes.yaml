@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+    - name: Install package (ignore errors)
+      apt:
+        name: nginx
+        state: present
+      ignore_errors: yes
+
+    - name: Print success message
+      debug:
+        msg: "Installation complete on {{ inventory_hostname }}"
