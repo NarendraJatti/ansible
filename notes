@@ -113,3 +113,33 @@ vars folder(main.yaml) has more precedence to defaultt(main.yaml)
 -e >>extra vars hightest precedence
 
 
+error handling in ansible
+================
+oreder of execution of tasks in ansible
+Task Execution Order: Top-to-Bottom
+ Host Execution Strategy
+Ansible executes tasks host-by-host. By default, it will execute each task on all hosts before moving on to the next task.
+For example, if you have three hosts in your inventory, Ansible will:
+Execute Task 1 on Host A, then Host B, then Host C.
+After all hosts have completed Task 1, it will proceed to Task 2, and so on.
+ummary of Task Execution Order in Ansible:
+Tasks are executed in the order they appear in the playbook.
+Ansible runs tasks host-by-host, meaning all hosts complete one task before moving to the next task.
+Handlers and pre_tasks/post_tasks provide mechanisms to modify the execution flow.
+You can control task execution using conditions (when), and you can handle errors or define failure conditions using directives like ignore_errors, failed_when, and block.
+This sequential and predictable execution order is one of Ansible's key strengths, ensuring clear and consistent automation workflows.
+Default Behavior (Without Error Handling)
+By default, if a task fails on any host, Ansible marks the playbook as failed and:
+
+Stops the task execution on that host.
+Continues running the task on other hosts.
+After completing the current task on all hosts, Ansible stops the playbook entirely.Handling Task Failures with ignore_errors
+If you want Ansible to continue execution even when a task fails, you can use the ignore_errors: yes directive. This allows the playbook to continue running even after a task failure.
+Summary of Failure Scenarios:
+Default Behavior: Task fails on one host (e.g., Host C), Ansible stops executing tasks on that host but continues on other hosts. Playbook stops after the current task.
+ignore_errors: Task failures are ignored, and the playbook continues executing on all hosts, including the failed ones.
+failed_when: Custom failure conditions can be defined. Ansible stops task execution based on these conditions.
+max_fail_percentage: You can set a failure threshold (e.g., 30%) before Ansible stops the playbook.
+any_errors_fatal: If any host fails, Ansible stops the playbook immediately for all hosts.
+serial: Tasks are executed in batches. Failed hosts can be retried after the first batch completes.
+These mechanisms allow you to control how Ansible reacts to failures, ensuring that your playbooks can handle errors in the way that best fits your use case.
